@@ -1,0 +1,36 @@
+*{
+    margin:0;
+    padding: 0;
+}
+.navbar{
+    border-bottom: 1px solid rgb(179, 177, 177);
+    padding:1%;
+}
+.navbar_left{
+    margin-left: 26%;
+}
+.nav_brand{
+    margin-left: 7%;
+}
+.list-unstyled{
+    list-style-type: none;
+}
+.list-unstyled li a{
+    text-decoration: none;
+    color: rgb(122, 122, 122);
+}
+.list-unstyled li a:hover{
+    color: rgb(134, 114, 250) ;
+}
+.nav-link .fa-search{
+    font-size: 26px;
+}
+.navbar_left ul li a{
+    font-weight: 600;
+}
+.navbar_left ul li a:hover{
+    color: green!important;
+}
+.navbar_left .nav_btn_exc:hover{
+    color:white!important;
+}
