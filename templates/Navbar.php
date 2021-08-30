@@ -53,8 +53,8 @@
                         <li class="nav-item dropdown ms-2">
 							<a class="nav-link  dropdown-toggle bord btn btn-outline-warning" href="#" data-bs-toggle="dropdown"> My account </a>
 							<ul class="dropdown-menu dropdown-menu-end">
-								<li><a class="dropdown-item" href="#"> Login</a></li>
-								<li><a class="dropdown-item" href="#"> Create Account </a></li>
+								<li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#LoginModal" href="#"> Login</a></li>
+								<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#Signup"> Create Account </a></li>
 							</ul>
 						</li>
                         <li class="nav-item"><a class="nav-link btn btn-outline-primary nav_btn_exc ms-2" href="#"> Posted Add </a></li>
@@ -65,6 +65,3 @@
 				</div> <!-- navbar-collapse.// -->
 			</div> <!-- container-fluid.// -->
 		</nav>
-
-
-        
