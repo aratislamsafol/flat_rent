@@ -9,6 +9,7 @@
       </div>
   </div>
 </div>
+
 <!-- Login -->
 <div class="modal fade" id="LoginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-fullscreen-sm-down modal-dialog-centered">
@@ -44,7 +45,7 @@
 <div class="modal fade" id="Signup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-fullscreen-sm-down modal-dialog-centered">
 		<div class="modal-content">
-			<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
+			<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" enctype="multipart/form-data">
 				<div class="modal-header">
 					<h5 class="modal-title m_t_color" id="exampleModalLabel">Create Account</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -84,7 +85,7 @@
             </div>
             <div class="col-md-6 mb-3">
               <label for="post_img_1" class="form-label">Upload Photos:</label>
-              <input type="file" name="user_img_1" class="form-control" />
+              <input type="file" name="user_img" class="form-control" />
             </div>
           </div>
           
@@ -94,18 +95,27 @@
           </div>
 
           <div class="mb-3">
-						<label for="" class="form-label">Password</label>
-						<input type="text" name="u_pass" class="form-control" />
-					</div>
+              <label for="" class="form-label">Address</label>
+              <input type="text" name="u_add" class="form-control" />
+          </div>
 
-          <div class="mb-3">
-						<label for="" class="form-label">Confirm Password</label>
-						<input type="password" name="user_pass" class="form-control" />
-					</div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="" class="form-label">Password</label>
+              <input type="text" name="user_pass" class="form-control" />
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label for="" class="form-label">Confirm Password</label>
+              <input type="password" name="con_user_pass" class="form-control" />
+            </div>
+          </div>
+
+          
 
 				</div>
 				<div class="modal-footer">
-					<button type="submit" name="login_req" class="btn btn-primary">SignUp</button>
+					<button type="submit" name="signup_req" class="btn btn-primary">SignUp</button>
 				</div>
 			</form>
 		</div>

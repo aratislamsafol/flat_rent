@@ -1,4 +1,5 @@
 <?php 
+    include($_SERVER['DOCUMENT_ROOT'].'/flat_rent_final/templates/Request.php');
     include($_SERVER['DOCUMENT_ROOT'].'/flat_rent_final/templates/Navbar.php');
     include($_SERVER['DOCUMENT_ROOT'].'/flat_rent_final/templates/Modals.php');
 ?>

@@ -6,8 +6,13 @@
         public $user    =   db_user;
         public $pass    =   db_pass;
         public $db      =   db_name;
+
         public $error;
         public $con;
+
+        public function __construct(){
+            $this->connection();
+        }
 
         private function connection(){
             $this->con=new mysqli($this->host,$this->user,$this->pass,$this->db);
