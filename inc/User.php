@@ -1,5 +1,5 @@
 <?php 
-    include($_SERVER['DOCUMENT_ROOT'].'/flat_rent_final/inc/Session.php');
+    include_once($_SERVER['DOCUMENT_ROOT'].'/flat_rent_final/inc/Session.php');
 
     class Users{
         private $ok;
@@ -38,15 +38,40 @@
             //     return $failed;
             // }
 
-            $sql="SELECT* FROM users WHERE user_email='$useremail' AND user_pass='$userpass' LIMIT 1";
-            $result=$this->ok->con->query($sql);
-
-            if($result){
-                echo'Login Successfully';
+            $loggin=$this->getloggin($useremail,$userpass);
+            
+            if($loggin){
+                echo"Success";
             }
             else{
-                echo "error";
+                echo"not";
             }
+            
+            // if($loggin){
+            //     Session::init();
+            //     Session::set('Loggin',true);
+            //     Session::set('user_id',$loggin['user_id']);
+            //     Session::set('user_name',$loggin['user_name']);
+            //     Session::set('user_email',$loggin['user_email']);
+            //     Session::set('user_mobile',$loggin['user_mobile']);
+            //     Session::set('user_address',$loggin['u_add']);
+
+            //     header("Location:admin/Index.php");
+
+            // }
+            // else{
+            //     $failed = '<div class="alert alert-danger" role="alert">Email or Password not match.</div>';
+
+            //     return $failed;
+            // }
+        }
+
+        public function getloggin($useremail,$userpass){
+            $sql="SELECT* FROM users WHERE user_email='$useremail' AND user_pass='$userpass' LIMIT 1";
+            $result=$this->ok->con->query($sql);
+            $get_data=$result->fetch_assoc();
+
+            return $get_data;
         }
 
         

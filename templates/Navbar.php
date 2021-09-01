@@ -50,13 +50,25 @@
 						<li><a class="dropdown-item" href="#"> Bangla </a></li>
 					</ul>
 				</li>
+				<?php if(Session::get('Loggin') == true){ ?>
 				<li class="nav-item dropdown ms-2">
 					<a class="nav-link  dropdown-toggle bord btn btn-outline-warning" href="#" data-bs-toggle="dropdown"> My account </a>
 					<ul class="dropdown-menu dropdown-menu-end">
-						<li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#LoginModal" href="#"> Login</a></li>
-						<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#Signup"> Create Account </a></li>
+						<li><a href=""><?php echo Session::get('user_name');?></a></li>
+						<li><a class="dropdown-item" href="?Logout=true"> Logout </a></li>
 					</ul>
 				</li>
+				<?php }else{?>
+					<li class="nav-item dropdown ms-2">
+						<a class="nav-link  dropdown-toggle bord btn btn-outline-warning" href="#" data-bs-toggle="dropdown"> My account </a>
+						<ul class="dropdown-menu dropdown-menu-end">
+							<li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#LoginModal" href="#"> Login</a></li>
+							<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#Signup"> Create Account </a></li>
+						</ul>
+					</li>
+				<?php }?>
+
+
 				<li class="nav-item"><a class="nav-link btn btn-outline-primary nav_btn_exc ms-2" href="#"> Posted Add </a></li>
 				<li class="nav-item"><a class="nav-link ms-2" href="#" data-bs-toggle="modal" data-bs-target="#search_modal"> <i class="fas fa-search"></i> </a></li>
 				
@@ -64,6 +76,8 @@
 		</div> <!-- navbar-collapse.// -->
 	</div> <!-- container-fluid.// -->
 </nav>
+
+
 
 <?php 
 	if(isset($user_login)){
