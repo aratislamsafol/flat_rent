@@ -28,7 +28,7 @@ class Session {
         session_unset();
         session_destroy();
 
-        header("Location: /../fp/index.php");
+        header("Location: /../flat_rent_final/index.php");
     }
 }
 

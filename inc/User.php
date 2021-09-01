@@ -12,7 +12,7 @@
             $useremail=$data['user_email'];
             $userpass=$data['user_pass'];
 
-            if($useremail == '' || $userpass== ''){
+            if($useremail == "" OR $userpass == ""){
                 $failed='<div class="alert alert-danger" role="alert">Field should not be empty.</div>';
                 
                 return $failed;
@@ -21,7 +21,6 @@
                 $userpass=md5($userpass);
             }
 
-
             $check_email=$this->checkemail($useremail);
 
             if($check_email == false){
@@ -29,6 +28,10 @@
             
                 return $failed;
             }
+
+            
+
+
 
             // $check_username=$this->CheckUsername($username);
 
@@ -41,33 +44,27 @@
             $loggin=$this->getloggin($useremail,$userpass);
             
             if($loggin){
-                echo"Success";
+                Session::init();
+                Session::set('Loggin',true);
+                Session::set('user_id',$loggin['user_id']);
+                Session::set('user_name',$loggin['user_name']);
+                Session::set('user_email',$loggin['user_email']);
+                Session::set('user_mobile',$loggin['user_mobile']);
+                Session::set('user_address',$loggin['u_add']);
+
+                header("Location:admin/Index.php");
+
             }
             else{
-                echo"not";
+                $failed = '<div class="alert alert-danger" role="alert">Email or Password not match.</div>';
+
+                return $failed;
             }
-            
-            // if($loggin){
-            //     Session::init();
-            //     Session::set('Loggin',true);
-            //     Session::set('user_id',$loggin['user_id']);
-            //     Session::set('user_name',$loggin['user_name']);
-            //     Session::set('user_email',$loggin['user_email']);
-            //     Session::set('user_mobile',$loggin['user_mobile']);
-            //     Session::set('user_address',$loggin['u_add']);
 
-            //     header("Location:admin/Index.php");
-
-            // }
-            // else{
-            //     $failed = '<div class="alert alert-danger" role="alert">Email or Password not match.</div>';
-
-            //     return $failed;
-            // }
         }
 
         public function getloggin($useremail,$userpass){
-            $sql="SELECT* FROM users WHERE user_email='$useremail' AND user_pass='$userpass' LIMIT 1";
+            $sql="SELECT * FROM users WHERE user_email='$useremail' AND user_pass='$userpass' LIMIT 1";
             $result=$this->ok->con->query($sql);
             $get_data=$result->fetch_assoc();
 
