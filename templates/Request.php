@@ -14,8 +14,11 @@
         $user_signup=$user_obj->signup($_POST);
     }
 
+
     if(isset($_GET['Logout']) AND $_GET['Logout'] == 'true') {
+        Cookies::destroy('cookie_save');
         Session::destroy();
     }
 
+    
 ?>

@@ -1,5 +1,7 @@
 <?php 
     include_once($_SERVER['DOCUMENT_ROOT'].'/flat_rent_final/inc/Session.php');
+    include_once($_SERVER['DOCUMENT_ROOT'].'/flat_rent_final/inc/Cookies.php');
+
 
     class Users{
         private $ok;
@@ -11,15 +13,16 @@
         public function getlogin($data){
             $useremail=$data['user_email'];
             $userpass=$data['user_pass'];
+            $remember_me=$data['remember'];
 
-            if($useremail == "" OR $userpass == ""){
-                $failed='<div class="alert alert-danger" role="alert">Field should not be empty.</div>';
+            // if($useremail == "" OR $userpass == ""){
+            //     $failed='<div class="alert alert-danger" role="alert">Field should not be empty.</div>';
                 
-                return $failed;
-            }else{
-                $useremail=strtolower($useremail);
-                $userpass=md5($userpass);
-            }
+            //     return $failed;
+            // }else{
+            //     $useremail=strtolower($useremail);
+            //     $userpass=md5($userpass);
+            // }
 
             $check_email=$this->checkemail($useremail);
 
@@ -28,11 +31,6 @@
             
                 return $failed;
             }
-
-            
-
-
-
             // $check_username=$this->CheckUsername($username);
 
             // if($check_username == false){
@@ -51,9 +49,23 @@
                 Session::set('user_email',$loggin['user_email']);
                 Session::set('user_mobile',$loggin['user_mobile']);
                 Session::set('user_address',$loggin['u_add']);
+                Session::set('user_role',$loggin['user_role']);
 
-                header("Location:admin/Index.php");
+                Cookies::init('cookie_save',true);
 
+                switch($loggin['user_role']){
+                    case 'super_admin':
+                        header("Location:/../admin/Index.php");
+                    break;
+                    case 'admin':
+                        header("Location:index.php");
+                    break;
+                    case 'editor':
+                        header("Location:/../admin/Index.php");
+                    break;
+                    default:
+                        header("Location:index.php");    
+                }
             }
             else{
                 $failed = '<div class="alert alert-danger" role="alert">Email or Password not match.</div>';

@@ -31,6 +31,12 @@
           <div class="forget">
             <a href="">forget account?</a>
           </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox"  name="remember" value="true" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+              Remember me
+            </label>
+          </div>
           
 				</div>
 				<div class="modal-footer">
