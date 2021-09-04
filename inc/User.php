@@ -2,7 +2,6 @@
     include_once($_SERVER['DOCUMENT_ROOT'].'/flat_rent_final/inc/Session.php');
     include_once($_SERVER['DOCUMENT_ROOT'].'/flat_rent_final/inc/Cookies.php');
 
-
     class Users{
         private $ok;
 
@@ -10,19 +9,19 @@
             $this->ok = new Database();
         }
 
-        public function getlogin($data){
+        public function getlogin($data) {
             $useremail=$data['user_email'];
             $userpass=$data['user_pass'];
             $remember_me=$data['remember'];
 
-            // if($useremail == "" OR $userpass == ""){
-            //     $failed='<div class="alert alert-danger" role="alert">Field should not be empty.</div>';
+            if($useremail == "" OR $userpass == ""){
+                $failed='<div class="alert alert-danger" role="alert">Field should not be empty.</div>';
                 
-            //     return $failed;
-            // }else{
-            //     $useremail=strtolower($useremail);
-            //     $userpass=md5($userpass);
-            // }
+                return $failed;
+            }else {
+                $useremail=strtolower($useremail);
+                $userpass=md5($userpass);
+            }
 
             $check_email=$this->checkemail($useremail);
 
@@ -31,6 +30,7 @@
             
                 return $failed;
             }
+
             // $check_username=$this->CheckUsername($username);
 
             // if($check_username == false){
@@ -39,9 +39,9 @@
             //     return $failed;
             // }
 
-            $loggin=$this->getloggin($useremail,$userpass);
+            $loggin = $this->getloggin($useremail,$userpass);
             
-            if($loggin){
+            if($loggin) {
                 Session::init();
                 Session::set('Loggin',true);
                 Session::set('user_id',$loggin['user_id']);
@@ -62,22 +62,26 @@
                     Cookies::destroy('user_email');
                     Cookies::destroy('user_pass');
                 }
-
-                switch($loggin['user_role']){
+                
+                switch($loggin['user_role']) {
+                    
                     case 'super_admin':
-                        header("Location:/../admin/Index.php");
+                        header("Location:./admin/Index.php");
                     break;
+
                     case 'admin':
+                        header("Location:./admin/Index.php");
+                        
+                    break;
+
+                    case 'editor':
                         header("Location:index.php");
                     break;
-                    case 'editor':
-                        header("Location:/../admin/Index.php");
-                    break;
+
                     default:
                         header("Location:index.php");    
                 }
-            }
-            else{
+            }else {
                 $failed = '<div class="alert alert-danger" role="alert">Email or Password not match.</div>';
 
                 return $failed;

@@ -54,8 +54,8 @@
 				<li class="nav-item dropdown ms-2">
 					<a class="nav-link  dropdown-toggle bord btn btn-outline-warning" href="#" data-bs-toggle="dropdown"> My account </a>
 					<ul class="dropdown-menu dropdown-menu-end">
-						<li><a href="dropdown-item"><?php echo Session::get('user_name');?></a></li>
-						<li><a class="" href="?Logout=true"> Logout </a></li>
+						<li><a class="dropdown-item" href="#"><?php echo Session::get('user_name');?></a></li>
+						<li><a class="dropdown-item" href="?Logout=true"> Logout </a></li>
 					</ul>
 				</li>
 				<?php }else{?>
@@ -89,6 +89,6 @@
 ?>
 <?php 
 	if(isset($_COOKIE)){
-		echo Cookies::get('cookie_save');
+		echo "Cookie test: ".Cookies::get('cookie_save');
 	}
 ?>
