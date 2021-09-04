@@ -51,10 +51,20 @@
                 Session::set('user_address',$loggin['u_add']);
                 Session::set('user_role',$loggin['user_role']);
 
-                Cookies::init('cookie_save', true);
-
+                Cookies::init('cookie_save',true);
+                
+                if(!empty($remember_me)){
+                    Cookies::init('remember',$remember_me);
+                    Cookies::init('user_email',$loggin['user_email']);
+                    Cookies::init('user_pass',$userpass);
+                }else{
+                    Cookies::destroy('remember');
+                    Cookies::destroy('user_email');
+                    Cookies::destroy('user_pass');
+                }
+                
                 switch($loggin['user_role']) {
-
+                    
                     case 'super_admin':
                         header("Location:./admin/Index.php");
                     break;
